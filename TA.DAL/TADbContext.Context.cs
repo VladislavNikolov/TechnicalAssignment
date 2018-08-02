@@ -13,10 +13,10 @@ namespace TA.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBEntities : DbContext
+    public partial class TADbContext : DbContext
     {
-        public DBEntities()
-            : base("name=DBEntities")
+        public TADbContext()
+            : base("name=TADbContext")
         {
         }
     
@@ -26,8 +26,8 @@ namespace TA.DAL
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Order_Detail> Order_Details { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Order_Detail> Order_Details { get; set; }
     }
 }
