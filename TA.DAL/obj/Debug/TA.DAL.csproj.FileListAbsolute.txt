@@ -1,0 +1,10 @@
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\TA.DAL.dll.config
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\TA.DAL.dll
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\TA.DAL.pdb
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\EntityFramework.dll
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\EntityFramework.xml
+D:\Project\Technical Assignment\TA.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\Technical Assignment\TA.DAL\obj\Debug\TA.DAL.csprojResolveAssemblyReference.cache
+D:\Project\Technical Assignment\TA.DAL\obj\Debug\TA.DAL.dll
+D:\Project\Technical Assignment\TA.DAL\obj\Debug\TA.DAL.pdb
