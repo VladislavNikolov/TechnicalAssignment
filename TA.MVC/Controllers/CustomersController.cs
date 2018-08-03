@@ -3,11 +3,11 @@
     using System.Web.Mvc;
     using Services;
 
-    public class HomeController : Controller
+    public class CustomersController : Controller
     {
         private readonly CustomerService customerService;
 
-        public HomeController()
+        public CustomersController()
         {
             this.customerService = new CustomerService();
         }

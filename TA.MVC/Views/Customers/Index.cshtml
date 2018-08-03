@@ -24,7 +24,7 @@
         <tr>
             <td>@c.ContactName</td>
             <td>@c.OrdersCount</td>
-            <td>@Html.ActionLink("Details", "CustomerDetails", "Home", new { customerId = c.CustomerID }, null)</td>
+            <td>@Html.ActionLink("Details", "CustomerDetails", "Customers", new { customerId = c.CustomerID }, null)</td>
         </tr>
     }
 </table>
