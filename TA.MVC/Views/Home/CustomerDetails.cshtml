@@ -1,0 +1,72 @@
+﻿@model TA.MVC.Models.Customer
+
+@{
+    ViewBag.Title = "CustomerDetails";
+}
+
+<h3>Customer Details</h3>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Contact Title</th>
+        <td>@Model.ContactTitle</td>
+    </tr>
+    <tr>
+        <th>Contact Name:</th>
+        <td>@Model.ContactName</td>
+    </tr>
+    <tr>
+        <th>Company Name:</th>
+        <td>@Model.CompanyName</td>
+    </tr>
+    <tr>
+        <th>Address:</th>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <th>City:</th>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <th>Region:</th>
+        <td>@Model.Region</td>
+    </tr>
+    <tr>
+        <th>Postal Code:</th>
+        <td>@Model.PostalCode</td>
+    </tr>
+    <tr>
+        <th>Country:</th>
+        <td>@Model.Country</td>
+    </tr>
+    <tr>
+        <th>Phone:</th>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <th>Fax:</th>
+        <td>@Model.Fax</td>
+    </tr>
+    <tr>
+        <th>Orders Count:</th>
+        <td>@Model.OrdersCount</td>
+    </tr>
+</table>
+
+<h3>Customer Orders</h3>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Products Count:</th>
+        <th>Total Sum:</th>
+        <th>Issues:</th>
+    </tr>
+    @foreach (var o in Model.Orders)
+    {
+        <tr>
+            <td>@o.ProductsCount</td>
+            <td>@o.TotalSum</td>
+            <td>@(o.MayHaveIssues ? "There might be issues with this order!" : "")</td>
+        </tr>
+    }
+</table>
+
+

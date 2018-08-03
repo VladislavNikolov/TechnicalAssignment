@@ -1,7 +1,31 @@
-﻿
+﻿@model List<TA.MVC.Models.Customer>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    @Html.TextBox("searching")<input type="submit" value="Search" />
+}
+
+<br />
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Contact Name </th>
+        <th>Orders Count</th>
+        <th>Details</th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.ContactName</td>
+            <td>@c.OrdersCount</td>
+            <td>@Html.ActionLink("Details", "CustomerDetails", "Home", new { customerId = c.CustomerID }, null)</td>
+        </tr>
+    }
+</table>
 
