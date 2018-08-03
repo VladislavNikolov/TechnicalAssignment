@@ -33,7 +33,7 @@
 
         public virtual T GetById(object id)
         {
-            return this.Context.Set<T>().Find(id);
+            return this.DbSet.Find(id);
         }
 
         public virtual void Add(T entity)
