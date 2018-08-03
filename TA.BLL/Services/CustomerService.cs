@@ -5,7 +5,6 @@
     using System.Linq;
     using DTOs;
     using Interfaces;
-    using System;
 
     public class CustomerService : BaseService<Customer>, ICustomerService
     {
@@ -15,6 +14,7 @@
                 .GetAll()
                 .Select(c => new CustomerDTO
                 {
+                    CustomerID = c.CustomerID,
                     ContactName = c.ContactName,
                     OrdersCount = c.Orders.Count
                 });
@@ -42,6 +42,7 @@
                     Country = customer.Country,
                     Phone = customer.Phone,
                     Fax = customer.Fax,
+                    OrdersCount = customer.Orders.Count
                 };
             }
 
@@ -50,18 +51,20 @@
 
         public IEnumerable<OrderDTO> GetOrdersByCustomerId(string customerId)
         {
-            var orders = base.repository
-                .GetById(customerId)
-                .Orders;
+            var customer = base.repository.GetById(customerId);
+            if (customer == null)
+            {
+                return null;
+            }
 
             var result = new List<OrderDTO>();
-            foreach (var order in orders)
+            foreach (var order in customer.Orders)
             {
                 var orderDto = new OrderDTO()
                 {
                     TotalSum = order.Order_Details.Sum(od => (od.UnitPrice - (decimal)od.Discount) * od.Quantity),
                     ProductsCount = order.Order_Details.Count,
-                    MayHaveIssues = this.OrderMayHaveIssues(order)
+                    MayHaveIssues = order.Order_Details.Any(od => od.Product.Discontinued || (od.Product.UnitsInStock < od.Product.UnitsOnOrder))
                 };
 
                 result.Add(orderDto);
@@ -70,19 +73,19 @@
             return result;
         }
 
-        private bool OrderMayHaveIssues(Order order)
-        {
-            bool result = false;
-            foreach (var orderDetail in order.Order_Details)
-            {
-                if (orderDetail.Product.Discontinued || orderDetail.Product.UnitsInStock < orderDetail.Product.UnitsOnOrder)
-                {
-                    result = true;
-                    break;
-                }
-            }
+        //private bool OrderMayHaveIssues(Order order)
+        //{
+        //    bool result = false;
+        //    foreach (var orderDetail in order.Order_Details)
+        //    {
+        //        if (orderDetail.Product.Discontinued || orderDetail.Product.UnitsInStock < orderDetail.Product.UnitsOnOrder)
+        //        {
+        //            result = true;
+        //            break;
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }
