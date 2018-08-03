@@ -1,9 +1,0 @@
-D:\Project\Technical Assignment\TA.BLL\bin\Debug\TA.BLL.dll
-D:\Project\Technical Assignment\TA.BLL\bin\Debug\TA.BLL.pdb
-D:\Project\Technical Assignment\TA.BLL\bin\Debug\TA.DAL.dll
-D:\Project\Technical Assignment\TA.BLL\bin\Debug\EntityFramework.dll
-D:\Project\Technical Assignment\TA.BLL\bin\Debug\TA.DAL.pdb
-D:\Project\Technical Assignment\TA.BLL\bin\Debug\EntityFramework.xml
-D:\Project\Technical Assignment\TA.BLL\obj\Debug\TA.BLL.csprojResolveAssemblyReference.cache
-D:\Project\Technical Assignment\TA.BLL\obj\Debug\TA.BLL.dll
-D:\Project\Technical Assignment\TA.BLL\obj\Debug\TA.BLL.pdb
