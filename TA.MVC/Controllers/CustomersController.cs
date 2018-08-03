@@ -15,6 +15,10 @@
         public ActionResult Index(string searching)
         {
             var customers = this.customerService.GetAll(searching);
+            if (customers == null)
+            {
+                return RedirectToAction("DisplayError", "Error", new { area = "" });
+            }
 
             return View(customers);
         }
