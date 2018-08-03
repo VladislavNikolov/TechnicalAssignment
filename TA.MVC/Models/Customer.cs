@@ -1,4 +1,6 @@
-﻿namespace TA.MVC.Models
+﻿using System.Collections.Generic;
+
+namespace TA.MVC.Models
 {
     public class Customer
     {
@@ -14,5 +16,6 @@
         public string Phone { get; set; }
         public string Fax { get; set; }
         public int OrdersCount { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }
