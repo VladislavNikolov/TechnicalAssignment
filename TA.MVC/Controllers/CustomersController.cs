@@ -5,11 +5,11 @@
 
     public class CustomersController : Controller
     {
-        private readonly CustomerService customerService;
+        private readonly ICustomerService customerService;
 
-        public CustomersController()
+        public CustomersController(ICustomerService customerService)
         {
-            this.customerService = new CustomerService();
+            this.customerService = customerService;
         }
 
         public ActionResult Index(string searching)

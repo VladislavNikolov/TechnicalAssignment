@@ -5,9 +5,15 @@
     using System.Linq;
     using DTOs;
     using Interfaces;
+    using DAL.Repositories;
 
     public class CustomerService : BaseService<Customer>, ICustomerService
     {
+        public CustomerService(IBaseRepository<Customer> repository)
+            :base(repository)
+        {
+        }
+
         public IEnumerable<CustomerDTO> GetAll()
         {
             var customers = base.repository

@@ -2,16 +2,15 @@
 {
     using System.Web.Http;
     using BLL.Interfaces;
-    using BLL.Services;
 
     [RoutePrefix("api/customers")]
     public class CustomersController : ApiController
     {
         private readonly ICustomerService customerService;
 
-        public CustomersController()
+        public CustomersController(ICustomerService customerService)
         {
-            this.customerService = new CustomerService();
+            this.customerService = customerService;
         }
 
         [HttpGet]
