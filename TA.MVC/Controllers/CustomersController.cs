@@ -20,7 +20,7 @@
                 return RedirectToAction("DisplayError", "Error", new { area = "" });
             }
 
-            return View(customers);
+            return View("Index", customers);
         }
 
         public ActionResult CustomerDetails(string customerId)
@@ -39,7 +39,7 @@
 
             customer.Orders = orders;
 
-            return View(customer);
+            return View("CustomerDetails", customer);
         }
     }
 }
