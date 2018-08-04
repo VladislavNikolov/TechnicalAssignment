@@ -26,6 +26,10 @@
         public IHttpActionResult GetById(string id)
         {
             var customer = this.customerService.GetById(id);
+            if (customer == null)
+            {
+                return BadRequest("Please provide valid ID.");
+            }
 
             return Ok(customer);
         }
@@ -35,6 +39,10 @@
         public IHttpActionResult GetOrdersByCustomerId(string customerId)
         {
             var orders = this.customerService.GetOrdersByCustomerId(customerId);
+            if (orders == null)
+            {
+                return BadRequest("Please provide valid ID.");
+            }
 
             return Ok(orders);
         }
