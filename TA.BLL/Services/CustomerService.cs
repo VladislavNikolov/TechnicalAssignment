@@ -78,20 +78,5 @@
 
             return result;
         }
-
-        //private bool OrderMayHaveIssues(Order order)
-        //{
-        //    bool result = false;
-        //    foreach (var orderDetail in order.Order_Details)
-        //    {
-        //        if (orderDetail.Product.Discontinued || orderDetail.Product.UnitsInStock < orderDetail.Product.UnitsOnOrder)
-        //        {
-        //            result = true;
-        //            break;
-        //        }
-        //    }
-
-        //    return result;
-        //}
     }
 }

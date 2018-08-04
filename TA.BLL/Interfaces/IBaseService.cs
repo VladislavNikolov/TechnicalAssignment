@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TA.BLL.Services
+﻿namespace TA.BLL.Services
 {
+    using System.Collections.Generic;
+
     public interface IBaseService<T> where T : class
     {
         IEnumerable<T> GetAll();
