@@ -14,18 +14,22 @@
         {
         }
 
-        public IEnumerable<CustomerDTO> GetAll()
+        public IEnumerable<CustomerDTO> GetAll(string filterByName = null)
         {
-            var customers = base.repository
-                .GetAll()
-                .Select(c => new CustomerDTO
+            var customers = base.repository.GetAll();
+            if (filterByName != null)
+            {
+                customers = customers.Where(c => c.ContactName.ToLower().Contains(filterByName.ToLower()));
+            }
+
+            var result = customers.Select(c => new CustomerDTO
                 {
                     CustomerID = c.CustomerID,
                     ContactName = c.ContactName,
                     OrdersCount = c.Orders.Count
                 });
 
-            return customers.ToList();
+            return result.ToList();
         }
 
         public CustomerDTO GetById(string id)
@@ -57,24 +61,28 @@
 
         public IEnumerable<OrderDTO> GetOrdersByCustomerId(string customerId)
         {
-            var customer = base.repository.GetById(customerId);
-            if (customer == null)
-            {
-                return null;
-            }
-
-            var result = new List<OrderDTO>();
-            foreach (var order in customer.Orders)
-            {
-                var orderDto = new OrderDTO()
+            var result = base.repository
+                .GetAll()
+                .Where(c => c.CustomerID == customerId)
+                .SelectMany(c => c.Orders)
+                .SelectMany(o => o.Order_Details, (o, od) => new
                 {
-                    TotalSum = order.Order_Details.Sum(od => (od.UnitPrice - (decimal)od.Discount) * od.Quantity),
-                    ProductsCount = order.Order_Details.Count,
-                    MayHaveIssues = order.Order_Details.Any(od => od.Product.Discontinued || (od.Product.UnitsInStock < od.Product.UnitsOnOrder))
-                };
-
-                result.Add(orderDto);
-            }
+                    o.OrderID,
+                    od.UnitPrice,
+                    od.Discount,
+                    od.Quantity,
+                    od.Product.Discontinued,
+                    od.Product.UnitsInStock,
+                    od.Product.UnitsOnOrder,
+                })
+                .ToList()
+                .GroupBy(o => o.OrderID)
+                .Select(g => new OrderDTO
+                {
+                    ProductsCount = g.Count(),
+                    TotalSum = g.Sum(od => (od.UnitPrice - (decimal)od.Discount) * od.Quantity),
+                    MayHaveIssues = g.Any(od => od.Discontinued || (od.UnitsInStock < od.UnitsOnOrder))
+                });
 
             return result;
         }

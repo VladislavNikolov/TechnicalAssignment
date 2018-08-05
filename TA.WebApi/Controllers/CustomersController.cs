@@ -14,9 +14,9 @@
         }
 
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetAll(string filterByName = null)
         {
-            var customers = this.customerService.GetAll();
+            var customers = this.customerService.GetAll(filterByName);
 
             return Ok(customers);
         }

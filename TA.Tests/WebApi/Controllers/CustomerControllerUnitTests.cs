@@ -22,7 +22,7 @@
         [TestMethod]
         public void GetAll_ShouldReturnOkWithIListOfCustomerDTOs()
         {
-            mockedCustomerService.Setup(x => x.GetAll()).Returns(new List<CustomerDTO>());
+            mockedCustomerService.Setup(x => x.GetAll(It.IsAny<string>())).Returns(new List<CustomerDTO>());
             var controller = new CustomersController(mockedCustomerService.Object);
 
             var response = controller.GetAll() as OkNegotiatedContentResult<IEnumerable<CustomerDTO>>;

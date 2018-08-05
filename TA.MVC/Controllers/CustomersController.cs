@@ -12,9 +12,9 @@
             this.customerService = customerService;
         }
 
-        public ActionResult Index(string searching)
+        public ActionResult Index(string filterByName)
         {
-            var customers = this.customerService.GetAll(searching);
+            var customers = this.customerService.GetAll(filterByName);
             if (customers == null)
             {
                 return RedirectToAction("DisplayError", "Error", new { area = "" });

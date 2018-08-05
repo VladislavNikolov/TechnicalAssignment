@@ -5,7 +5,7 @@
 
     public interface ICustomerService
     {
-        IEnumerable<CustomerDTO> GetAll();
+        IEnumerable<CustomerDTO> GetAll(string filterByName = null);
 
         CustomerDTO GetById(string id);
 

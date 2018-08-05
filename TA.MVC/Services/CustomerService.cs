@@ -3,7 +3,6 @@
     using RestSharp;
     using Models;
     using System.Collections.Generic;
-    using System.Linq;
 
     public class CustomerService : BaseService, ICustomerService
     {
@@ -11,21 +10,11 @@
             :base(restClient)
         {
         }
-
-        public List<Customer> GetAll()
+       
+        public List<Customer> GetAll(string filterName = null)
         {
-            return this.GetAll(null);
-        }
-
-        public List<Customer> GetAll(string filterName)
-        {
-            var request = new RestRequest("api/customers", Method.GET);
-
+            var request = new RestRequest("api/customers/?filterByName=" + filterName, Method.GET);
             var customers = base.restClient.Execute<List<Customer>>(request).Data;
-            if (customers != null && filterName != null)
-            {
-                customers = customers.Where(c => c.ContactName.ToLower().Contains(filterName.ToLower())).ToList();
-            }
 
             return customers;
         }

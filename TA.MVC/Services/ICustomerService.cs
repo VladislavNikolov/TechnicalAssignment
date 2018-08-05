@@ -5,9 +5,7 @@
 
     public interface ICustomerService
     {
-        List<Customer> GetAll();
-
-        List<Customer> GetAll(string filterName);
+        List<Customer> GetAll(string filterName = null);
 
         Customer GetById(string id);
 
